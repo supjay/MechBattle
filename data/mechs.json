@@ -1,0 +1,220 @@
+{
+  "mechs": [
+    {
+      "id": "titan",
+      "name": "Titan",
+      "description": "A walking fortress. Slow but nearly unstoppable in close combat.",
+      "hp": 120,
+      "armor": 8,
+      "move_range": 3,
+      "initiative": 2,
+      "weapons": [
+        {
+          "name": "Power Fist",
+          "type": "melee",
+          "damage": 30,
+          "range": 1,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 90
+        },
+        {
+          "name": "Missile Pod",
+          "type": "missiles",
+          "damage": 22,
+          "range": 6,
+          "ammo": 3,
+          "splash": 1,
+          "accuracy": 70
+        }
+      ],
+      "ability": {
+        "name": "Shield Wall",
+        "description": "Halves all incoming damage until your next turn.",
+        "effect": "shield_wall",
+        "uses_per_battle": 1
+      },
+      "color": [200, 80, 80]
+    },
+    {
+      "id": "raptor",
+      "name": "Raptor",
+      "description": "Speed and agility. Hits fast and repositions faster.",
+      "hp": 75,
+      "armor": 3,
+      "move_range": 6,
+      "initiative": 8,
+      "weapons": [
+        {
+          "name": "Laser Cannon",
+          "type": "laser",
+          "damage": 18,
+          "range": 7,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 80
+        },
+        {
+          "name": "Autocannon",
+          "type": "autocannon",
+          "damage": 14,
+          "range": 4,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 85
+        }
+      ],
+      "ability": {
+        "name": "Sprint",
+        "description": "Reset movement — move again this turn.",
+        "effect": "sprint",
+        "uses_per_battle": 1
+      },
+      "color": [80, 200, 80]
+    },
+    {
+      "id": "colossus",
+      "name": "Colossus",
+      "description": "A siege mech of terrifying scale. Devastating at long range.",
+      "hp": 150,
+      "armor": 10,
+      "move_range": 2,
+      "initiative": 1,
+      "weapons": [
+        {
+          "name": "Heavy Autocannon",
+          "type": "autocannon",
+          "damage": 20,
+          "range": 5,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 80
+        },
+        {
+          "name": "Siege Missiles",
+          "type": "missiles",
+          "damage": 28,
+          "range": 7,
+          "ammo": 3,
+          "splash": 1,
+          "accuracy": 65
+        }
+      ],
+      "ability": {
+        "name": "Artillery Barrage",
+        "description": "Select a tile. Hits all enemies within radius 2 for 35 damage.",
+        "effect": "artillery",
+        "uses_per_battle": 1
+      },
+      "color": [220, 170, 50]
+    },
+    {
+      "id": "phantom",
+      "name": "Phantom",
+      "description": "A stealth assassin. Strike from the shadows, vanish before they react.",
+      "hp": 70,
+      "armor": 2,
+      "move_range": 5,
+      "initiative": 9,
+      "weapons": [
+        {
+          "name": "Stealth Laser",
+          "type": "laser",
+          "damage": 20,
+          "range": 6,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 85
+        },
+        {
+          "name": "Vibro Blade",
+          "type": "melee",
+          "damage": 35,
+          "range": 1,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 95
+        }
+      ],
+      "ability": {
+        "name": "Cloak",
+        "description": "Become untargetable until your next turn.",
+        "effect": "cloak",
+        "uses_per_battle": 1
+      },
+      "color": [100, 100, 220]
+    },
+    {
+      "id": "vanguard",
+      "name": "Vanguard",
+      "description": "A balanced frontline mech. Reliable in any situation.",
+      "hp": 95,
+      "armor": 5,
+      "move_range": 4,
+      "initiative": 5,
+      "weapons": [
+        {
+          "name": "Plasma Laser",
+          "type": "laser",
+          "damage": 20,
+          "range": 6,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 82
+        },
+        {
+          "name": "Rapid Autocannon",
+          "type": "autocannon",
+          "damage": 16,
+          "range": 4,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 88
+        }
+      ],
+      "ability": {
+        "name": "Overcharge",
+        "description": "Next attack this turn deals +50% damage.",
+        "effect": "overcharge",
+        "uses_per_battle": 1
+      },
+      "color": [180, 80, 200]
+    },
+    {
+      "id": "sniper",
+      "name": "Sniper",
+      "description": "Extreme-range precision hunter. Picks off targets before they can close the distance.",
+      "hp": 80,
+      "armor": 3,
+      "move_range": 2,
+      "initiative": 7,
+      "weapons": [
+        {
+          "name": "Longshot Rifle",
+          "type": "laser",
+          "damage": 28,
+          "range": 10,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 88
+        },
+        {
+          "name": "Combat Blade",
+          "type": "melee",
+          "damage": 18,
+          "range": 1,
+          "ammo": null,
+          "splash": 0,
+          "accuracy": 82
+        }
+      ],
+      "ability": {
+        "name": "AP Rounds",
+        "description": "Load armor-piercing rounds. Next shot: +25% hit chance, ignores 5 armor. 2 uses.",
+        "effect": "ap_rounds",
+        "uses_per_battle": 2
+      },
+      "color": [80, 200, 200]
+    }
+  ]
+}
