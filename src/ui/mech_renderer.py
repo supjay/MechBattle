@@ -1085,6 +1085,34 @@ def _make_cairo_dispatch(mech_id: str, pg_fallback):
 
 _RENDERERS = {mid: _make_cairo_dispatch(mid, pg) for mid, pg in _PG_RENDERERS.items()}
 
+# ---------------------------------------------------------------------------
+# Sprite dispatch – overrides Cairo for mechs that have PNG sprite sheets
+# ---------------------------------------------------------------------------
+
+try:
+    from src.ui.sprite_renderer import draw_mech_sprite as _draw_mech_sprite, has_sprite as _has_sprite
+    _SPRITES = True
+except Exception:
+    _SPRITES = False
+
+
+def _make_sprite_dispatch(mech_id: str, cairo_fallback):
+    """Sprite → Cairo/pygame fallback chain."""
+    def _dispatch(surf: pygame.Surface, r: pygame.Rect,
+                  color, team_color, walk_t=0.0, fire_t=-1.0):
+        if _SPRITES and _draw_mech_sprite(surf, r, mech_id, color, team_color,
+                                          walk_t, fire_t):
+            return
+        cairo_fallback(surf, r, color, team_color, walk_t=walk_t, fire_t=fire_t)
+    return _dispatch
+
+
+if _SPRITES:
+    from src.ui.sprite_renderer import _SHEETS as _SPRITE_SHEETS
+    for _mid in list(_SPRITE_SHEETS.keys()):
+        if _mid in _RENDERERS:
+            _RENDERERS[_mid] = _make_sprite_dispatch(_mid, _RENDERERS[_mid])
+
 
 def draw_mech(surface: pygame.Surface, mech, tile_rect: pygame.Rect,
               pad: int = 2, walk_t: float = 0.0, fire_t: float = -1.0):
