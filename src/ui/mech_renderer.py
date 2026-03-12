@@ -1049,33 +1049,41 @@ def draw_sniper(surf, r, color, team_color, walk_t=0.0, fire_t=-1.0):
 
 
 # ---------------------------------------------------------------------------
-# Cairo dispatch (sniper uses high-quality cairo renderer when available)
+# Cairo dispatch (all mechs use high-quality cairo renderer when available)
 # ---------------------------------------------------------------------------
 
 try:
-    from src.ui.cairo_renderer import render_sniper_cairo as _render_sniper_cairo
+    from src.ui.cairo_renderer import render_mech_cairo as _render_mech_cairo
     _CAIRO = True
 except Exception:
     _CAIRO = False
 
-
-def _draw_sniper_dispatch(surf: pygame.Surface, r: pygame.Rect,
-                          color, team_color, walk_t=0.0, fire_t=-1.0):
-    if _CAIRO:
-        pg = _render_sniper_cairo(r.w, r.h, color, team_color, walk_t, fire_t)
-        surf.blit(pg, (r.x, r.y))
-    else:
-        draw_sniper(surf, r, color, team_color, walk_t=walk_t, fire_t=fire_t)
-
-
-_RENDERERS = {
+# Fallback pygame renderers (used when Cairo unavailable or mech not in cairo)
+_PG_RENDERERS = {
     "titan":    draw_titan,
     "raptor":   draw_raptor,
     "colossus": draw_colossus,
     "phantom":  draw_phantom,
     "vanguard": draw_vanguard,
-    "sniper":   _draw_sniper_dispatch,
+    "sniper":   draw_sniper,
 }
+
+
+def _make_cairo_dispatch(mech_id: str, pg_fallback):
+    """Return a dispatch fn: tries Cairo first, falls back to pygame."""
+    def _dispatch(surf: pygame.Surface, r: pygame.Rect,
+                  color, team_color, walk_t=0.0, fire_t=-1.0):
+        if _CAIRO:
+            pg_surf = _render_mech_cairo(mech_id, r.w, r.h, color, team_color,
+                                         walk_t, fire_t)
+            if pg_surf is not None:
+                surf.blit(pg_surf, (r.x, r.y))
+                return
+        pg_fallback(surf, r, color, team_color, walk_t=walk_t, fire_t=fire_t)
+    return _dispatch
+
+
+_RENDERERS = {mid: _make_cairo_dispatch(mid, pg) for mid, pg in _PG_RENDERERS.items()}
 
 
 def draw_mech(surface: pygame.Surface, mech, tile_rect: pygame.Rect,
