@@ -29,7 +29,7 @@ class MoveAnimation:
     """Smooth pixel-lerp for a mech gliding from one tile to another."""
 
     def __init__(self, from_px: Tuple[int, int], to_px: Tuple[int, int],
-                 duration: float = 0.66):
+                 duration: float = 1.10):
         self.from_px  = (float(from_px[0]), float(from_px[1]))
         self.to_px    = (float(to_px[0]),   float(to_px[1]))
         self.duration = duration
