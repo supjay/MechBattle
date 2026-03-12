@@ -1047,13 +1047,34 @@ def draw_sniper(surf, r, color, team_color, walk_t=0.0, fire_t=-1.0):
 # Dispatch table + public API
 # ---------------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------------
+# Cairo dispatch (sniper uses high-quality cairo renderer when available)
+# ---------------------------------------------------------------------------
+
+try:
+    from src.ui.cairo_renderer import render_sniper_cairo as _render_sniper_cairo
+    _CAIRO = True
+except Exception:
+    _CAIRO = False
+
+
+def _draw_sniper_dispatch(surf: pygame.Surface, r: pygame.Rect,
+                          color, team_color, walk_t=0.0, fire_t=-1.0):
+    if _CAIRO:
+        pg = _render_sniper_cairo(r.w, r.h, color, team_color, walk_t, fire_t)
+        surf.blit(pg, (r.x, r.y))
+    else:
+        draw_sniper(surf, r, color, team_color, walk_t=walk_t, fire_t=fire_t)
+
+
 _RENDERERS = {
     "titan":    draw_titan,
     "raptor":   draw_raptor,
     "colossus": draw_colossus,
     "phantom":  draw_phantom,
     "vanguard": draw_vanguard,
-    "sniper":   draw_sniper,
+    "sniper":   _draw_sniper_dispatch,
 }
 
 

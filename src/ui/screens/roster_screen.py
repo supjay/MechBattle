@@ -10,19 +10,19 @@ from src.ui.mech_renderer import draw_mech_portrait
 
 MECHS_PER_TEAM = 3
 COLS_PER_ROW   = 3          # 3 cards per row → 2 rows of 3
-CARD_W         = 390
-CARD_H         = 230
-CARD_PAD_X     = 14         # horizontal gap between cards
-CARD_PAD_Y     = 14         # vertical gap between rows
+CARD_W         = 590
+CARD_H         = 345
+CARD_PAD_X     = 20         # horizontal gap between cards
+CARD_PAD_Y     = 20         # vertical gap between rows
 
 # Portrait sub-column (left side of card)
-PORTRAIT_W   = 172          # portrait column width → ~172×214 ≈ portrait aspect ratio
-PORTRAIT_PAD = 8            # padding around the portrait box
+PORTRAIT_W   = 260          # portrait column width → ~172×214 ≈ portrait aspect ratio
+PORTRAIT_PAD = 10            # padding around the portrait box
 
 # Derived right-column offsets (relative to card rect.x)
 _DIV_X   = PORTRAIT_PAD + PORTRAIT_W + PORTRAIT_PAD        # 8+172+8  = 188
-_INFO_X  = _DIV_X + 8                                       # 188+8    = 196
-_INFO_W  = CARD_W - _INFO_X - 8                             # 390-196-8 = 186
+_INFO_X  = _DIV_X + 10                                      # 188+8    = 196
+_INFO_W  = CARD_W - _INFO_X - 10                             # 390-196-8 = 186
 
 _TEAM_COLS = [TEAM1_BORDER, TEAM2_BORDER, TEAM3_BORDER]
 
@@ -53,7 +53,7 @@ class RosterScreen:
         n = len(self.templates)
         total_w = COLS_PER_ROW * CARD_W + (COLS_PER_ROW - 1) * CARD_PAD_X
         start_x = (SCREEN_W - total_w) // 2
-        top_y   = 155   # header occupies 0-155
+        top_y   = 200   # header occupies 0-155
 
         self._card_rects = []
         self._hp_bars    = []

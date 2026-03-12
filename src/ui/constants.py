@@ -3,14 +3,14 @@
 # ---------------------------------------------------------------------------
 # Window
 # ---------------------------------------------------------------------------
-SCREEN_W = 1280
-SCREEN_H = 720
+SCREEN_W = 1920
+SCREEN_H = 1080
 FPS = 60
 
 # ---------------------------------------------------------------------------
 # Layout
 # ---------------------------------------------------------------------------
-GRID_AREA_W = 800          # Pixel width reserved for the battle grid
+GRID_AREA_W = 1200         # Pixel width reserved for the battle grid
 HUD_X = GRID_AREA_W        # HUD panel starts here
 HUD_W = SCREEN_W - HUD_X  # = 480
 HUD_H = SCREEN_H           # = 720
@@ -19,8 +19,8 @@ HUD_H = SCREEN_H           # = 720
 # Grid rendering (computed dynamically in BattleScreen for each map)
 # ---------------------------------------------------------------------------
 # Preferred tile size; may shrink for larger maps.
-TILE_SIZE_MAX = 60
-TILE_SIZE_MIN = 30
+TILE_SIZE_MAX = 80
+TILE_SIZE_MIN = 36
 
 # ---------------------------------------------------------------------------
 # Colours – general
